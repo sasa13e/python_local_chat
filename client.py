@@ -8,17 +8,18 @@ def main():
 	port = 6000
 	bufsize = 1024
 	
-	clientsoc k= socket.socket( socket.AF_INET, socket.SOCK_STREAM )
-	clientsock.connect( (host,port) )
+	clientsock = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
+	clientsock.connect( ( host, port ) )
 		
 	while True:
-		mdata = raw_input('> ')	#получаем строки с клавиатуры
-		if mdata == 'exit':		#для выхода
+		outData = raw_input('> ')	#получаем строки с клавиатуры
+		if outData == 'exit':		
 			print 'bye bye'
 			break
-		clientsock.send(mdata)
-		mdata = clientsock.recv( bufsize )
-		print mdata				#печатаем получаемые данные
+		clientsock.send( outData )
+		
+		inData = clientsock.recv( bufsize )
+		print inData				#печатаем получаемые данные
 			
 	clientsock.close()
 	
